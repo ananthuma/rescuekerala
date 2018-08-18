@@ -30,6 +30,5 @@ urlpatterns = [
     path('camp/<int:pk>/details/',views.CampDetails.as_view(),name='camp_details'),
     path('camp/<int:camp_id>/add_person/', views.AddPerson.as_view(), name='add_person'),
     path('coordinator_home/', views.coordinator_home, name='coordinator_home'),
-    path('find_people/', views.find_people, name='find_people'),
-    url('camp_requirements/(?P<camp_id>\d+)/$', views.show_camp_reqs, name='each_camp_reqirements'),
+    path('find_people/', views.find_people, name='find_people'),    
 ]

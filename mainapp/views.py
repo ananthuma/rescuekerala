@@ -269,8 +269,14 @@ class CampDetailsForm(forms.ModelForm):
        fields = [
         'name',
         'food_req',
+	'food_required_number',
+	'food_recieved_number',
         'clothing_req',
+	'clothing_required_number',
+	'clothing_recieved_number',
         'sanitary_req',
+	'sanitary_required_number',
+	'sanitary_recieved_number',
         'medical_req',
         'other_req'
         ]
@@ -278,9 +284,15 @@ class CampDetailsForm(forms.ModelForm):
        widgets = {
            'name': forms.Textarea(attrs={'rows':1,'readonly':True}),
            'food_req': forms.Textarea(attrs={'rows':3}),
+           'food_required_number': forms.Textarea(attrs={'rows':3}),
+	   'food_recieved_number': forms.Textarea(attrs={'rows':3}),
            'clothing_req': forms.Textarea(attrs={'rows':3}),
+           'clothing_required_number': forms.Textarea(attrs={'rows':3}),
+	   'clothing_recieved_number': forms.Textarea(attrs={'rows':3}),
            'medical_req': forms.Textarea(attrs={'rows':3}),
            'sanitary_req': forms.Textarea(attrs={'rows':3}),
+           'sanitary_required_number': forms.Textarea(attrs={'rows':3}),
+	   'sanitary_recieved_number': forms.Textarea(attrs={'rows':3}),
            'other_req': forms.Textarea(attrs={'rows':3}),
        }
 
@@ -328,6 +340,16 @@ def find_people(request):
     page = request.GET.get('page')
     people = paginator.get_page(page)
     return render(request, 'mainapp/people.html', {'filter': filter , "data" : people })
+
+def show_camp_reqs(request, camp_id=None):
+    if not camp_id:
+        return HttpResponseRedirect("/error?error_text={}".format('Page not found!'))
+    filter = RequestFilter(None)
+    try:
+        camp_data = RescueCamp.objects.get(id=camp_id)
+    except:
+        return HttpResponseRedirect("/error?error_text={}".format('Sorry, we couldnt fetch details for that request'))
+    return render(request, 'mainapp/camp_requirement_details.html', {'camp_data': camp_data })
 
 @login_required(login_url='/login/')
 def coordinator_home(request):

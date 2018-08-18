@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+
+{% block content %}  
+  <div class="text-right">
+    <a href="/find_people">Search</a> | 
+    <a href="/logout">Logout</a>
+  </div>
+
+  <h3 class="text-center">
+      Camp Requirements | 
+      ക്യാമ്പിലെ ആവശ്യങ്ങൾ
+  </h3>
+
+  <div class="text-center text-danger">
+      {% if messages %}
+        {% for message in messages %}
+          <h3>{{ message }}</h3>
+        {% endfor %}
+      {% endif %}
+  </div>
+  <br>
+
+
+
+  <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th colspan="2" style="text-align:center;">{{camp_data.name}} Camp Requirements</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><b> Food Requirement : </b>{{camp_data.food_recieved_number}} recieved / {{camp_data.food_required_number}} required  </td><td>{{ camp_data.food_req }}</td>
+      </tr>
+      <tr>
+        <td><b> Clothing Requirement : </b>{{camp_data.clothing_recieved_number}} recieved / {{camp_data.clothing_required_number}} required </td><td>{{ camp_data.clothing_req }}</td>
+      </tr>
+      <tr>
+        <td><b> Sanitary Requirement : </b>{{camp_data.sanitary_recieved_number}} recieved / {{camp_data.sanitary_required_number}} required </td><td>{{ camp_data.sanitary_req }}</td>
+      </tr>
+      <tr>
+        <td><b> Medical Requirement  </b></td><td>{{ camp_data.medical_req }} </td>
+      </tr>
+      <tr>
+        <td><b> Other Requirement  </b></td><td>{{ camp_data.other_req }}</td>
+      </tr>
+      <tr>
+        <td><b> Contact Details  </b></td><td>{{ camp_data.contacts }}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+  $('#id_gender_0').parents('.radio').hide();
+  $('#id_gender > .radio').removeClass('radio').addClass('radio-inline');
+  </script>
+
+{% endblock %}

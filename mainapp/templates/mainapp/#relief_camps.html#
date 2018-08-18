@@ -47,7 +47,6 @@
       <th>Address</th>
       <th>Contact Numbers</th>
       <th>Registrations</th>
-      <th>Requirements</th>
     </tr>
   {% for item in relief_camps %}
     <tr valign="top">
@@ -69,7 +68,7 @@
         {{ item.count }}
       </td>
       <td>
-	 <a href="{%url 'each_camp_reqirements' item.id %}">Requirements / Contribute</a>
+	{{  }}
       </td>
     </tr>
     {% endfor %}
